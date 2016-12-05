@@ -1,5 +1,5 @@
-# generator-jhipster-entity-audit-and-delete [![NPM version][npm-image]][npm-url] [![Build Status][travis-image]][travis-url] [![Dependency Status][daviddm-image]][daviddm-url]
-> JHipster module to enable entity auditing, add audit log page and allow to change default delete behavior
+# generator-jhipster-angular-datatables [![NPM version][npm-image]][npm-url] [![Build Status][travis-image]][travis-url] [![Dependency Status][daviddm-image]][daviddm-url]
+> JHipster module to change default grid(table) for all or selected entities with [angular-datatables] 
 
 ## Usage
 
@@ -29,6 +29,13 @@ If you want don't want to answer each question you can use
 yo jhipster-angular-datatables default
 ```
 
+## Example
+
+Old view:
+[![Old view][old-image]]
+
+New view:
+[![Old view][new-image]]
 
 ## License
 
@@ -40,3 +47,5 @@ Apache-2.0 © [Hermes Lorenzo](https://www.linkedin.com/in/hermeslm)
 [travis-url]: https://travis-ci.org/deepu105/generator-jhipster-entity-audit
 [daviddm-image]: https://david-dm.org/hipster-labs/generator-jhipster-entity-audit.svg?theme=shields.io
 [daviddm-url]: https://david-dm.org/hipster-labs/generator-jhipster-entity-audit
+[old-image]: https://github.com/hermeslm/generator-jhipster-angular-datatables/blob/master/doc/old.png
+[new-image]: https://github.com/hermeslm/generator-jhipster-angular-datatables/blob/master/doc/new.png
