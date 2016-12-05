@@ -1,5 +1,5 @@
-# generator-jhipster-angular-datatables [![NPM version][npm-image]][npm-url] [![Build Status][travis-image]][travis-url] [![Dependency Status][daviddm-image]][daviddm-url]
-> JHipster module to change default grid(table) for all or selected entities with [angular-datatables] 
+# generator-jhipster-angular-datatables [![NPM version][npm-image]][npm-url] [![Dependency Status][daviddm-image]][project-url]
+> JHipster module to change default grid(table) for all or selected entities with angular-datatables. 
 
 ## Usage
 
@@ -31,12 +31,6 @@ yo jhipster-angular-datatables default
 
 ## Example
 
-Old view:
-![Old view][old-image]
-
-New view:
-![Old view][new-image]
-
 ## License
 
 Apache-2.0 © [Hermes Lorenzo](https://www.linkedin.com/in/hermeslm)
@@ -44,7 +38,8 @@ Apache-2.0 © [Hermes Lorenzo](https://www.linkedin.com/in/hermeslm)
 [npm-image]: https://badge.fury.io/js/generator-jhipster-entity-audit.svg
 [npm-url]: https://npmjs.org/package/generator-jhipster-entity-audit
 [travis-image]: https://travis-ci.org/deepu105/generator-jhipster-entity-audit.svg?branch=master
-[travis-url]: https://travis-ci.org/deepu105/generator-jhipster-entity-audit
+[project-url]: https://github.com/hermeslm/generator-jhipster-angular-datatables
+[project-build]: 1.0.0
 [daviddm-image]: https://david-dm.org/hipster-labs/generator-jhipster-entity-audit.svg?theme=shields.io
 [daviddm-url]: https://david-dm.org/hipster-labs/generator-jhipster-entity-audit
 [old-image]: https://github.com/hermeslm/generator-jhipster-angular-datatables/blob/master/doc/old.png
