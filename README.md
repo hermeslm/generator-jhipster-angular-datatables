@@ -32,10 +32,10 @@ yo jhipster-angular-datatables default
 ## Example
 
 Old view:
-[![Old view][old-image]]
+![Old view][old-image]
 
 New view:
-[![Old view][new-image]]
+![Old view][new-image]
 
 ## License
 
