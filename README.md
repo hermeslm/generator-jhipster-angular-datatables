@@ -39,7 +39,7 @@ Apache-2.0 © [Hermes Lorenzo](https://www.linkedin.com/in/hermeslm)
 [npm-url]: https://npmjs.org/package/generator-jhipster-entity-audit
 [travis-image]: https://travis-ci.org/deepu105/generator-jhipster-entity-audit.svg?branch=master
 [project-url]: https://github.com/hermeslm/generator-jhipster-angular-datatables
-[project-build]: 1.0.0
+[project-build]: 1.1.0
 [daviddm-image]: https://david-dm.org/hipster-labs/generator-jhipster-entity-audit.svg?theme=shields.io
 [daviddm-url]: https://david-dm.org/hipster-labs/generator-jhipster-entity-audit
 [old-image]: https://github.com/hermeslm/generator-jhipster-angular-datatables/blob/master/doc/old.png
