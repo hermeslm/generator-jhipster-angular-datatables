@@ -1,0 +1,44 @@
+<%_ var keyPrefix = angularAppName + '.'+ entityTranslationKey + '.'; _%>
+<section class="content-header">
+  <h1><%= entityClassPluralHumanized %></h1>
+  <div ncy-breadcrumb class="breadcrumb"></div>
+</section>
+<section class="content">
+  <div class="row">
+    <div class="col-xs-12">
+      <div class="box">
+        <div class="box-header">
+          <div class="col-xs-4 no-padding-left">
+            <button class="btn btn-primary" ui-sref="<%= entityStateName %>.new">
+              <span class="glyphicon glyphicon-flash"></span> <span>Create new <%= entityClassHumanized %></span>
+            </button>
+          </div>
+          <div class="col-xs-8 no-padding-right">
+            <form name="searchForm" class="form-inline">
+              <div class="input-group pull-right" >
+                <input type="text" class="form-control" ng-model="vm.searchQuery"
+                       id="searchQuery<%= entityStateName %>" placeholder="<% if (enableTranslation) { %>{{ '<%= keyPrefix %>home.search' | translate }}<% } else { %>Query<% } %>" ng-change="vm.search()">
+                  <span  class="input-group-btn width-min" >
+                    <button class="btn btn-info" ng-click="vm.search(vm.searchQuery)">
+                        <span class="glyphicon glyphicon-filter"></span>
+                    </button>
+                  </span>
+                  <span class="input-group-btn width-min" ng-if="vm.currentSearch">
+                    <button class="btn btn-info" ng-click="vm.clear()">
+                        <span class="glyphicon glyphicon-trash"></span>
+                    </button>
+                  </span>
+              </div>
+            </form>
+          </div>
+        </div>
+        <div class="box-body">
+          <table datatable="" dt-options="vm.dtOptions" dt-columns="vm.dtColumns"
+                 dt-instance="vm.dtInstance"
+                 class="table table-striped table-bordered">
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

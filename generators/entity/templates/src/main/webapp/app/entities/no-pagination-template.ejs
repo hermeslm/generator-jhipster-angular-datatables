@@ -1,0 +1,52 @@
+        vm.<%= entityInstancePlural %> = [];
+        <%_ if (fieldsContainBlob) { _%>
+        vm.openFile = DataUtils.openFile;
+        vm.byteSize = DataUtils.byteSize;
+        <%_ } _%>
+        <%_ if (searchEngine == 'elasticsearch') { _%>
+        vm.clear = clear;
+        vm.search = search;
+        vm.loadAll = loadAll;
+        vm.dtInstance = {};
+
+        <%_ } _%>
+
+        loadAll();
+
+        vm.dtOptions = DTOptionsBuilder.fromFnPromise(function() {
+            var defer = $q.defer();
+            if (!vm.searchQuery || vm.searchQuery == '') {
+                  <%= entityClass %>.query(function(result) {
+                  vm.<%= entityInstancePlural %> = result;
+                  defer.resolve(result);
+                });
+            }else {
+                defer.resolve($filter('filter')(vm.<%= entityInstancePlural %>, vm.searchQuery, undefined));
+            }
+            return defer.promise;
+        }).withPaginationType('full_numbers').withBootstrap().withDOM('tip');
+
+        vm.dtColumns = [
+            <%_ for (idx in fields) {
+              var fieldName = fields[idx].fieldName;
+              var fieldNameCapitalized = fields[idx].fieldNameCapitalized;
+              DTColumnBuilder.newColumn(fieldName).withTitle(fieldNameCapitalized),
+            <%_ } _%>
+            DTColumnBuilder.newColumn(null).withTitle('Actions').withOption('width', '155px').notSortable()
+                           .renderWith(actionsHtml)
+        ];
+
+        function loadAll() {
+            <%= entityClass %>.query(function(result) {
+                vm.<%= entityInstancePlural %> = result;
+                vm.searchQuery = null;
+            });
+        }
+
+        function actionsHtml(data, type, full, meta){
+            return GUIUtils.getActionsTemplate(data, 'language', ['all']);
+        }
+
+        function search() {
+        vm.dtInstance.reloadData();
+        }

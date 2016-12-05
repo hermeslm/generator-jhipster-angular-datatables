@@ -1,0 +1,54 @@
+{
+  "name": "generator-jhipster-angular-datatables",
+  "version": "1.0.0",
+  "description": "JHipster module to change default grid by Angular DataTables",
+  "homepage": "https://github.com/hermeslm/generator-jhipster-angular-datatables",
+  "author": {
+    "name": "Hermes Lorenzo",
+    "email": "hermeslm@gmail.com",
+    "url": "https://www.linkedin.com/in/hermeslm"
+  },
+  "files": [
+    "generators/app"
+  ],
+  "main": "generators/app/index.js",
+  "keywords": [
+    "yeoman-generator",
+    "jhipster-module",
+    "Jhipster",
+    "Entity",
+    "Angular",
+    "DataTables",
+    "angular-datatables"
+  ],
+  "dependencies": {
+    "yeoman-generator": "0.22.5",
+    "chalk": "1.1.1",
+    "glob": "^7.0.3",
+    "semver": "5.1.0",
+    "generator-jhipster": "^3.6.0"
+  },
+  "devDependencies": {
+    "gulp": "^3.9.0",
+    "gulp-bump": "2.0.1",
+    "gulp-eslint": "2.0.0",
+    "gulp-exclude-gitignore": "1.0.0",
+    "gulp-git": "1.7.0",
+    "gulp-istanbul": "0.10.3",
+    "gulp-mocha": "2.2.0",
+    "gulp-nsp": "2.3.1",
+    "gulp-plumber": "1.1.0",
+    "gulp-rename": "^1.2.0",
+    "gulp-sequence": "0.4.5",
+    "gulp-shell": "^0.5.1",
+    "yeoman-assert": "2.1.1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hermeslm/generator-jhipster-angular-datatables"
+  },
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/hermeslm/generator-jhipster-angular-datatables/issues"
+  }
+}
