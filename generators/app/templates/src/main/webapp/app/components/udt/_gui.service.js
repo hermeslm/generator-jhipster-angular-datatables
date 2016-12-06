@@ -2,7 +2,7 @@
     'use strict';
 
     angular
-        .module('UDT', [])
+        .module('udt', [])
         .factory('GUIUtils', GUIUtils);
 
     function GUIUtils () {

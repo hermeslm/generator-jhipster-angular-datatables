@@ -11,7 +11,7 @@ var path = require('path'),
   glob = require("glob");
 
 // Stores JHipster variables
-var jhipsterVar = {moduleName: 'entity-audit'};
+var jhipsterVar = {moduleName: 'angular-datatables'};
 
 // Stores JHipster functions
 var jhipsterFunc = {};
@@ -48,15 +48,9 @@ module.exports = yeoman.Base.extend({
     checkJHVersion: function () {
       var supportedJHVersion = packagejs.dependencies['generator-jhipster'];
       if (jhipsterVar.jhipsterVersion && !semver.satisfies(jhipsterVar.jhipsterVersion, supportedJHVersion)) {
-        this.env.error(chalk.red.bold('ERROR!') + ' I support only JHipster versions greater than ${supportedJHVersion}...');
+        this.env.error(chalk.red.bold('ERROR!') + ' I support only JHipster versions greater than ${supportedJHVersion}... If you want to use Entity Audit with an older JHipster version, download a previous version that supports the required JHipster version.');
       }
     },
-
-    // checkDBType: function () {
-    //   if (jhipsterVar.databaseType != 'sql' && jhipsterVar.databaseType != 'mongodb') {
-    //     this.env.error(chalk.red.bold('ERROR!') + ' I support only SQL or MongoDB databases...\n');
-    //   }
-    // },
 
     getEntitityNames: function () {
       var existingEntities = [],
@@ -99,7 +93,7 @@ module.exports = yeoman.Base.extend({
         },
         type: 'checkbox',
         name: 'entitiesToUpdate',
-        message: 'Please choose the entities to be change',
+        message: 'Please choose the entities to be audited',
         choices: this.existingEntityChoices,
         default: 'none'
       }
@@ -139,7 +133,7 @@ module.exports = yeoman.Base.extend({
       this.changelogDate = jhipsterFunc.dateFormatForLiquibase();
       this.searchEngine = jhipsterVar.searchEngine;
       this.webappDir = jhipsterVar.webappDir;
-      this.javaTemplateDir = 'src/main/java/package';
+      // this.javaTemplateDir = 'src/main/java/package';
       this.webTemplateDir = 'src/main/webapp';
       this.resourcesTemplateDir = 'src/main/resources';
       this.javaDir = jhipsterVar.javaDir;
@@ -164,15 +158,19 @@ module.exports = yeoman.Base.extend({
       jhipsterFunc.addAngularJsModule('datatables.bootstrap');
       jhipsterFunc.addAngularJsModule('datatables.colreorder');
       jhipsterFunc.addAngularJsModule('datatables.columnfilter');
-      jhipsterFunc.addAngularJsModule('UDT');
+      jhipsterFunc.addAngularJsModule('udt');
 
       //Copy components services
       var filesToCopy = [
+        // {
+        //   from: this.webappDir + 'app/admin/entity-audit/_entity-audits.html',
+        //   to: this.webappDir + 'app/admin/entity-audit/entity-audits.html'},
         {
-          from: this.webTemplateDir + '/app/components/UDT/GUI.service.js',
-          to: this.webappDir + 'app/components/UDT/GUI.service.js'
+          from: this.webTemplateDir + '/app/components/udt/_gui.service.js',
+          to: this.webappDir + 'app/components/udt/gui.service.js'
         }
       ];
+      // this.copy(this.webTemplateDir + '/app/components/UDT/GUI.service.js', this.webappDir + 'app/components/UDT/GUI.service.js');
       this.copyFiles(filesToCopy);
     },
 
@@ -184,13 +182,12 @@ module.exports = yeoman.Base.extend({
       if (this.entitiesToUpdate && this.entitiesToUpdate.length > 0 && this.entitiesToUpdate != 'none') {
         this.log('\n' + chalk.bold.green('I\'m Updating selected entities ') + chalk.bold.yellow(this.entitiesToUpdate));
         var jsonObj = null;
-        this.auditedEntities = [];
+        // this.auditedEntities = [];
 
         this.entitiesToUpdate.forEach(function (entityName) {
-          this.auditedEntities.push("\"" + entityName + "\"")
-          //We read configuration from file
+          // this.auditedEntities.push("\"" + entityName + "\"")
+          // We read configuration from file
           var fileName = this.jhipsterConfigDirectory + '/' + entityName + ".json";
-          this.log(chalk.red.bold('WARN!') + " Var Service: " + fileName);
           this.fileData = this.fs.readJSON(fileName);
           //Config Entity data
           this.dto = this.fileData.dto;
@@ -198,21 +195,32 @@ module.exports = yeoman.Base.extend({
             this.log(chalk.red.bold('WARN!') + ' dto is missing in .jhipster/${ this.name }.json, using no as fallback\n');
             this.dto = 'no';
           }
-          this.entityAngularJSSuffix = this.options['angular-suffix'];
-          if (this.entityAngularJSSuffix && !this.entityAngularJSSuffix.startsWith('-')){
-            this.entityAngularJSSuffix = '-' + this.entityAngularJSSuffix;
+
+          this.entityAngularJSSuffix = '';
+
+          if (this.fileData.angularJSSuffix !== undefined){
+            this.entityAngularJSSuffix = this.fileData.angularJSSuffix;
           }
+
           this.entityNameCapitalized = _.upperFirst(entityName);
           var entityNameSpinalCased = _.kebabCase(_.lowerFirst(entityName));
-          var entityNamePluralizedAndSpinalCased = _.kebabCase(_.lowerFirst(pluralize(this.name)));
+          var entityNamePluralizedAndSpinalCased = _.kebabCase(_.lowerFirst(pluralize(entityName)));
           this.entityPluralFileName = entityNamePluralizedAndSpinalCased + this.entityAngularJSSuffix;
+          this.entityStateName = entityNameSpinalCased + this.entityAngularJSSuffix;
           this.entityFolderName = entityNameSpinalCased;
+          this.entityFileName = entityNameSpinalCased + this.entityAngularJSSuffix;
           this.entityClass = this.entityNameCapitalized;
+          this.entityAngularJSName = this.entityClass + _.upperFirst(_.camelCase(this.entityAngularJSSuffix));
           this.entityInstance = _.lowerFirst(entityName);
           this.entityClassPlural = pluralize(entityName);
+          this.entityClassPluralHumanized = _.startCase(this.entityClassPlural);
+          this.entityClassHumanized = _.startCase(this.entityNameCapitalized);
           this.pagination = this.fileData.pagination;
           this.entityInstancePlural = pluralize(this.entityInstance);
+          this.entityTranslationKey = this.entityInstance;
+          this.fieldsContainBlob = false;
           this.relationships = this.fileData.relationships;
+          this.fields = this.fileData.fields;
           if (this.databaseType === 'cassandra' || this.databaseType === 'mongodb') {
             this.pkType = 'String';
           } else {
@@ -225,10 +233,84 @@ module.exports = yeoman.Base.extend({
           this.fieldsContainOneToMany = false;
           this.fieldsContainManyToOne = false;
           this.differentTypes = [this.entityClass];
+
+
           if (!this.relationships) {
             this.relationships = [];
           }
+
+          // Load in-memory data for fields
+          this.fields && this.fields.forEach( function (field) {
+            // Migration from JodaTime to Java Time
+            if (field.fieldType === 'DateTime' || field.fieldType === 'Date') {
+              field.fieldType = 'ZonedDateTime';
+            }
+            var fieldType = field.fieldType;
+
+            var nonEnumType = _.includes(['String', 'Integer', 'Long', 'Float', 'Double', 'BigDecimal',
+              'LocalDate', 'ZonedDateTime', 'Boolean', 'byte[]', 'ByteBuffer'], fieldType);
+            if ((this.databaseType === 'sql' || this.databaseType === 'mongodb') && !nonEnumType) {
+              field.fieldIsEnum = true;
+            } else {
+              field.fieldIsEnum = false;
+            }
+
+            if (_.isUndefined(field.fieldNameCapitalized)) {
+              field.fieldNameCapitalized = _.upperFirst(field.fieldName);
+            }
+
+            if (_.isUndefined(field.fieldNameUnderscored)) {
+              field.fieldNameUnderscored = _.snakeCase(field.fieldName);
+            }
+
+            if (_.isUndefined(field.fieldNameHumanized)) {
+              field.fieldNameHumanized = _.startCase(field.fieldName);
+            }
+
+            if (_.isUndefined(field.fieldInJavaBeanMethod)) {
+              // Handle the specific case when the second letter is capitalized
+              // See http://stackoverflow.com/questions/2948083/naming-convention-for-getters-setters-in-java
+              if (field.fieldName.length > 1) {
+                var firstLetter = field.fieldName.charAt(0);
+                var secondLetter = field.fieldName.charAt(1);
+                if (firstLetter === firstLetter.toLowerCase() && secondLetter === secondLetter.toUpperCase()) {
+                  field.fieldInJavaBeanMethod = firstLetter.toLowerCase() + field.fieldName.slice(1);
+                } else {
+                  field.fieldInJavaBeanMethod = _.upperFirst(field.fieldName);
+                }
+              } else {
+                field.fieldInJavaBeanMethod = _.upperFirst(field.fieldName);
+              }
+            }
+
+            if (_.isUndefined(field.fieldValidateRulesPatternJava)) {
+              field.fieldValidateRulesPatternJava = field.fieldValidateRulesPattern ?
+                field.fieldValidateRulesPattern.replace(/\\/g, '\\\\') : field.fieldValidateRulesPattern;
+            }
+
+            if (_.isArray(field.fieldValidateRules) && field.fieldValidateRules.length >= 1) {
+              field.fieldValidate = true;
+            } else {
+              field.fieldValidate = false;
+            }
+
+            if (fieldType === 'ZonedDateTime') {
+              this.fieldsContainZonedDateTime = true;
+            } else if (fieldType === 'LocalDate') {
+              this.fieldsContainLocalDate = true;
+            } else if (fieldType === 'BigDecimal') {
+              this.fieldsContainBigDecimal = true;
+            } else if (fieldType === 'byte[]' || fieldType === 'ByteBuffer') {
+              this.fieldsContainBlob = true;
+            }
+
+            if (field.fieldValidate) {
+              this.validation = true;
+            }
+          }, this);
+
           this.relationships && this.relationships.forEach(function (relationship) {
+
             if (_.isUndefined(relationship.relationshipNameCapitalized)) {
               relationship.relationshipNameCapitalized = _.upperFirst(relationship.relationshipName);
             }
@@ -313,13 +395,13 @@ module.exports = yeoman.Base.extend({
 
           this.service = this.fileData.service;
           //Update the entity list view
-          this.copyHtml(this.webTemplateDir + '/app/entities/_entity-management.ejs',
-                        this.webappDir + 'app/entities/' + this.entityFolderName + '/' + this.entityPluralFileName + '.html',
-                        this, {}, true);
+          jhipsterFunc.copyHtml(this.webTemplateDir + '/app/entities/_entity-management.ejs',
+            this.webappDir + 'app/entities/' + this.entityFolderName + '/' + this.entityPluralFileName + '.html',
+            this, {}, true);
           //Update the entity controller file
           this.template(this.webTemplateDir + '/app/entities/_entity-management.controller.ejs',
-                        this.webappDir + 'app/entities/' + this.entityFolderName + '/' + this.entityFileName + '.controller' + '.js',
-                        this, {});
+            this.webappDir + 'app/entities/' + this.entityFolderName + '/' + this.entityFileName + '.controller' + '.js',
+            this, {});
         }, this);
       }
     },
@@ -343,12 +425,14 @@ module.exports = yeoman.Base.extend({
       npm: false,
       callback: injectDependenciesAndConstants.bind(this)
     });
-  },
+  }
+  ,
 
   end: function () {
-    this.log('\n' + chalk.bold.green('Angular-Datatables is enabled for entities, you will have an option to enable audit while creating new entities as well'));
+    this.log('\n' + chalk.bold.green('Auditing enabled for entities, you will have an option to enable audit while creating new entities as well'));
     this.log('\n' + chalk.bold.green('I\'m running gulp install now'));
   }
 
 
-});
+})
+;

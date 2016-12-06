@@ -4,7 +4,6 @@
         vm.byteSize = DataUtils.byteSize;
         <%_ } _%>
         <%_ if (searchEngine == 'elasticsearch') { _%>
-        vm.clear = clear;
         vm.search = search;
         vm.loadAll = loadAll;
         vm.dtInstance = {};
@@ -29,8 +28,8 @@
         vm.dtColumns = [
             <%_ for (idx in fields) {
               var fieldName = fields[idx].fieldName;
-              var fieldNameCapitalized = fields[idx].fieldNameCapitalized;
-              DTColumnBuilder.newColumn(fieldName).withTitle(fieldNameCapitalized),
+              var fieldNameCapitalized = fields[idx].fieldNameCapitalized; _%>
+              DTColumnBuilder.newColumn('<%= fieldName %>').withTitle('<%= fieldNameCapitalized %>'),
             <%_ } _%>
             DTColumnBuilder.newColumn(null).withTitle('Actions').withOption('width', '155px').notSortable()
                            .renderWith(actionsHtml)
