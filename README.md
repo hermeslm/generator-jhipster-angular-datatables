@@ -35,16 +35,20 @@ Old view ![Old view][old-image]
 
 New view ![New view][new-image]
 
+## Todo
+
+1 - Resolve problems in entities with paging. 
+
 
 ## License
 
 Apache-2.0 © [Hermes Lorenzo](https://www.linkedin.com/in/hermeslm)
 
 [npm-image]: https://badge.fury.io/js/generator-jhipster-entity-audit.svg
-[npm-url]: https://npmjs.org/package/generator-jhipster-entity-audit
+[npm-url]: https://www.npmjs.com/package/generator-jhipster-angular-datatables
 [travis-image]: https://travis-ci.org/deepu105/generator-jhipster-entity-audit.svg?branch=master
 [project-url]: https://github.com/hermeslm/generator-jhipster-angular-datatables
-[project-build]: 1.1.0
+[project-build]: 1.3.0
 [daviddm-image]: https://david-dm.org/hipster-labs/generator-jhipster-entity-audit.svg?theme=shields.io
 [daviddm-url]: https://david-dm.org/hipster-labs/generator-jhipster-entity-audit
 [old-image]: https://github.com/hermeslm/generator-jhipster-angular-datatables/blob/master/doc/old.png
