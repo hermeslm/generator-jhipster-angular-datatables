@@ -43,7 +43,7 @@
         }
 
         function actionsHtml(data, type, full, meta){
-            return GUIUtils.getActionsTemplate(data, 'language', ['all']);
+            return GUIUtils.getActionsTemplate(data, $state.current.name, ['all']);
         }
 
         function search() {

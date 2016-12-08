@@ -189,10 +189,11 @@ module.exports = yeoman.Base.extend({
           // We read configuration from file
           var fileName = this.jhipsterConfigDirectory + '/' + entityName + ".json";
           this.fileData = this.fs.readJSON(fileName);
+          this.entityNameCapitalized = _.upperFirst(entityName);
           //Config Entity data
           this.dto = this.fileData.dto;
           if (this.dto != undefined) {
-            this.log(chalk.red.bold('WARN!') + ' dto is missing in .jhipster/${ this.name }.json, using no as fallback\n');
+            this.log(chalk.red.bold('WARN!') + ' dto is missing in .jhipster/' + this.entityNameCapitalized + '.json, using no as fallback\n');
             this.dto = 'no';
           }
 
@@ -202,7 +203,6 @@ module.exports = yeoman.Base.extend({
             this.entityAngularJSSuffix = this.fileData.angularJSSuffix;
           }
 
-          this.entityNameCapitalized = _.upperFirst(entityName);
           var entityNameSpinalCased = _.kebabCase(_.lowerFirst(entityName));
           var entityNamePluralizedAndSpinalCased = _.kebabCase(_.lowerFirst(pluralize(entityName)));
           this.entityPluralFileName = entityNamePluralizedAndSpinalCased + this.entityAngularJSSuffix;
