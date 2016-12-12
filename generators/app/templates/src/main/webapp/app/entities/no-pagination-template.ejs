@@ -26,11 +26,18 @@
         }).withPaginationType('full_numbers').withBootstrap().withDOM('tip');
 
         vm.dtColumns = [
-            <%_ for (idx in fields) {
+            <%_
+              for (idx in fields) {
               var fieldName = fields[idx].fieldName;
-              var fieldNameCapitalized = fields[idx].fieldNameCapitalized; _%>
+              var fieldNameCapitalized = fields[idx].fieldNameCapitalized;
+              if(idx > 4){
+              _%>
+              //DTColumnBuilder.newColumn('<%= fieldName %>').withTitle('<%= fieldNameCapitalized %>'),
+            <%_
+              }else{ _%>
               DTColumnBuilder.newColumn('<%= fieldName %>').withTitle('<%= fieldNameCapitalized %>'),
-            <%_ } _%>
+          <%_ }
+            } _%>
             DTColumnBuilder.newColumn(null).withTitle('Actions').withOption('width', '155px').notSortable()
                            .renderWith(actionsHtml)
         ];
