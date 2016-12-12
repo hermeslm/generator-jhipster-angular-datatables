@@ -35,7 +35,7 @@ Old view ![Old view][old-image]
 
 New view ![New view][new-image]
 
-- Added functionality of fields commented if count more than 5. It add all fields but if fields count is more than 5 will be added as lines commented.
+- Added functionality of fields commented if count more than 5. It add all fields but if fields count is more than 5 will be added as commented lines.
 
 
 ## Todo
