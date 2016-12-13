@@ -25,24 +25,24 @@
             for (var i = 0, len = buttons.length; i < len; i++) {
                 switch(buttons[i]) {
                     case 'view': {
-                        stButtons += '<button class="btn-sm btn-primary " ui-sref="' + entity + '-detail({id:' + data.id + '})">' +
-                            '   <i class="fa fa-eye"></i></button>';
+                        stButtons += '<a class="btn-sm btn-primary " ui-sref="' + entity + '-detail({id:' + data.id + '})">' +
+                            '   <i class="fa fa-eye"></i></a>';
                         break;
                     }
                     case 'update': {
                         if (stButtons.length != 0)
                             stButtons += '&nbsp;'
 
-                        stButtons += '<button class="btn-sm btn-warning" ui-sref="' + entity + '.edit({id:' + data.id + '})">' +
-                            '   <i class="fa fa-edit"></i></button>';
+                        stButtons += '<a class="btn-sm btn-warning" ui-sref="' + entity + '.edit({id:' + data.id + '})">' +
+                            '   <i class="fa fa-edit"></i></a>';
                         break;
                     }
                     case 'delete': {
                         if (stButtons.length != 0)
                             stButtons += '&nbsp;'
 
-                        stButtons += '<button class="btn-sm btn-danger" ui-sref="' + entity + '.delete({id:' + data.id + '})">' +
-                            '   <i class="fa fa-trash"></i></button>';
+                        stButtons += '<a class="btn-sm btn-danger" ui-sref="' + entity + '.delete({id:' + data.id + '})">' +
+                            '   <i class="fa fa-trash"></i></a>';
                         break;
                     }
                     case 'all' : {
