@@ -29,13 +29,25 @@ If you want don't want to answer each question you can use
 yo jhipster-angular-datatables default
 ```
 
+### Style
+
+All css class used in generator template are based in AdminLTE Template [AdminLTE].
+
+```bash
+<section class="content-header">
+<div class="box">
+<div class="box-header">
+<div class="box-body">
+```
+
 ## Example
 
 Old view ![Old view][old-image]
 
 New view ![New view][new-image]
 
-- Added functionality of fields commented if count more than 5. It add all fields but if fields count is more than 5 will be added as commented lines.
+- Added functionality if count more than 5 fields will be commented. It add all fields but if fields count is more than 5 will be added as commented lines.
+- Added template functionality, you can choose if you want to use templates or a single html.
 
 
 ## Todo
@@ -56,3 +68,4 @@ Apache-2.0 © [Hermes Lorenzo](https://www.linkedin.com/in/hermeslm)
 [daviddm-url]: https://david-dm.org/hipster-labs/generator-jhipster-entity-audit
 [old-image]: https://github.com/hermeslm/generator-jhipster-angular-datatables/blob/master/doc/old.png
 [new-image]: https://github.com/hermeslm/generator-jhipster-angular-datatables/blob/master/doc/new.png
+[adminLTE]: https://almsaeedstudio.com/themes/AdminLTE/index.html
