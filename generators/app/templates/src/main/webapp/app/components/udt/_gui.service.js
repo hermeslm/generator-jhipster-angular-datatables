@@ -24,35 +24,41 @@
             var stButtons = '';
             for (var i = 0, len = buttons.length; i < len; i++) {
                 switch(buttons[i]) {
-                    case 'view': {
-                        stButtons += '<a class="btn-sm btn-primary " ui-sref="' + entity + '-detail({id:' + data.id + '})">' +
-                            '   <i class="fa fa-eye"></i></a>';
-                        break;
-                    }
-                    case 'update': {
-                        if (stButtons.length != 0)
-                            stButtons += '&nbsp;'
+                  case 'view': {
+                    stButtons += '<a class="btn-sm btn-primary" ui-sref="' + entity + '-detail({id:data.id})" href="#/' + entity + '/' + data.id + '">' +
+                      '   <i class="glyphicon glyphicon-eye-open"></i></a>&nbsp;';
+                    // stButtons += '<a class="btn-sm btn-primary " ui-sref="' + entity + '-detail({id:' + data.id + '})">' +
+                    //     '   <i class="glyphicon glyphicon-eye-open"></i></a>';
+                    break;
+                  }
+                  case 'update': {
+                    // if (stButtons.length != 0)
+                    //     stButtons += '&nbsp;'
 
-                        stButtons += '<a class="btn-sm btn-warning" ui-sref="' + entity + '.edit({id:' + data.id + '})">' +
-                            '   <i class="fa fa-edit"></i></a>';
-                        break;
-                    }
-                    case 'delete': {
-                        if (stButtons.length != 0)
-                            stButtons += '&nbsp;'
+                    // stButtons += '<a class="btn-sm btn-warning" ui-sref="' + entity + '.edit({id:' + data.id + '})">' +
+                    //     '   <i class="fa fa-edit"></i></a>';
+                    stButtons += '<a class="btn-sm btn-warning" ui-sref="' + entity + '.edit({id:' + data.id + '})" href="#/' + entity + '/' + data.id + '/edit">' +
+                      '<span class="glyphicon glyphicon-pencil"></span></a>';
+                    break;
+                  }
+                  case 'delete': {
+                    if (stButtons.length != 0)
+                      stButtons += '&nbsp;'
 
-                        stButtons += '<a class="btn-sm btn-danger" ui-sref="' + entity + '.delete({id:' + data.id + '})">' +
-                            '   <i class="fa fa-trash"></i></a>';
-                        break;
-                    }
-                    case 'all' : {
-                        stButtons += '<a class="btn-sm btn-primary" ui-sref="' + entity + '-detail({id:data.id})" href="#/' + entity + '/' + data.id + '">' +
-                            '   <i class="fa fa-eye"></i></a>&nbsp;';
-                        stButtons += '<a class="btn-sm btn-warning" ui-sref="' + entity + '.edit({id:' + data.id + '})" href="#/' + entity + '/' + data.id + '/edit">' +
-                            '   <i class="fa fa-edit"></i></a>&nbsp;';
-                        stButtons += '<a class="btn-sm btn-danger" ui-sref="' + entity + '.delete({id:' + data.id + '})"  href="#/' + entity + '/' + data.id + '/delete">' +
-                            '   <i class="fa fa-trash"></i></a>';
-                    };
+                    stButtons += '<a class="btn-sm btn-danger" ui-sref="' + entity + '.delete({id:' + data.id + '})"  href="#/' + entity + '/' + data.id + '/delete">' +
+                      '<span class="glyphicon glyphicon-trash"></span></a>';
+                    // stButtons += '<a class="btn-sm btn-danger" ui-sref="' + entity + '.delete({id:' + data.id + '})">' +
+                    //     '   <i class="fa fa-trash"></i></a>';
+                    break;
+                  }
+                  case 'all' : {
+                    stButtons += '<a class="btn-sm btn-primary" ui-sref="' + entity + '-detail({id:' + data.id + '})" href="#/' + entity + '/' + data.id + '">' +
+                      '   <i class="glyphicon glyphicon-eye-open"></i></a>&nbsp;';
+                    stButtons += '<a class="btn-sm btn-warning" ui-sref="' + entity + '.edit({id:' + data.id + '})" href="#/' + entity + '/' + data.id + '/edit">' +
+                      '   <i class="glyphicon glyphicon-pencil"></i></a>&nbsp;';
+                    stButtons += '<a class="btn-sm btn-danger" ui-sref="' + entity + '.delete({id:' + data.id + '})"  href="#/' + entity + '/' + data.id + '/delete">' +
+                      '   <i class="glyphicon glyphicon-trash"></i></a>';
+                  }
                 }
             }
 

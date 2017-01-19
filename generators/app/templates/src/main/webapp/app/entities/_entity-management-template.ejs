@@ -1,0 +1,16 @@
+<ng-include src="'app/entities/tpl/list-header-tpl.html'"></ng-include>
+<section class="content">
+  <div class="row">
+    <div class="col-xs-12">
+      <div class="box">
+        <ng-include src="'app/entities/tpl/list-box-header-tpl.html'"></ng-include>
+        <div class="box-body">
+          <table datatable="" dt-options="vm.dtOptions" dt-columns="vm.dtColumns"
+                 dt-instance="vm.dtInstance"
+                 class="table table-striped table-bordered table-condensed">
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

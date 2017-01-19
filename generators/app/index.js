@@ -42,7 +42,8 @@ module.exports = yeoman.Base.extend({
     },
 
     displayLogo: function () {
-      this.log(chalk.white('Welcome to the ' + chalk.bold('JHipster Entity Grid by Angular DataTables') + ' Generator! ' + chalk.yellow('v' + packagejs.version + '\n')));
+      this.log(chalk.white('Welcome to the ' + chalk.bold('JHipster-Angular-DataTables') + ' Generator! ' + chalk.yellow('v' + packagejs.version + '\n')));
+      this.log(chalk.white('This will change JHipster Entity list component with Angular-DataTables') + '\n');
     },
 
     checkJHVersion: function () {
@@ -79,8 +80,17 @@ module.exports = yeoman.Base.extend({
     var prompts = [
       {
         type: 'list',
+        name: 'useTemplate',
+        message: '(1/2) Do you want to use template based or the default views?',
+        choices: [
+          {name: 'Yes, use templates based', value: true},
+          {name: 'No, use default views', value: false}
+        ],
+        default: true
+      }, {
+        type: 'list',
         name: 'updateType',
-        message: 'Do you want to change default frontend grid with Angular DataTables for all existing entities?',
+        message: '(2/2) Do you want to change all existing entities, all your custom code will be overwritten?',
         choices: [
           {name: 'Yes, update all', value: 'all'},
           {name: 'No, let me choose the entities to update', value: 'selected'}
@@ -93,7 +103,7 @@ module.exports = yeoman.Base.extend({
         },
         type: 'checkbox',
         name: 'entitiesToUpdate',
-        message: 'Please choose the entities to be audited',
+        message: 'Please choose the entities to be updated',
         choices: this.existingEntityChoices,
         default: 'none'
       }
@@ -107,6 +117,7 @@ module.exports = yeoman.Base.extend({
 
         this.props = props;
         // To access props later use this.props.someOption;
+        this.useTemplate = props.useTemplate;
         this.updateType = props.updateType;
         this.entitiesToUpdate = props.entitiesToUpdate;
         done();
@@ -199,7 +210,7 @@ module.exports = yeoman.Base.extend({
 
           this.entityAngularJSSuffix = '';
 
-          if (this.fileData.angularJSSuffix !== undefined){
+          if (this.fileData.angularJSSuffix !== undefined) {
             this.entityAngularJSSuffix = this.fileData.angularJSSuffix;
           }
 
@@ -239,8 +250,18 @@ module.exports = yeoman.Base.extend({
             this.relationships = [];
           }
 
+
+          if (this.useTemplate) {
+            jhipsterFunc.copyHtml(this.webTemplateDir + '/app/entities/tpl/_entity-box-header-template.ejs',
+              this.webappDir + 'app/entities/tpl/list-box-header-tpl.html',
+              this, {}, true);
+            jhipsterFunc.copyHtml(this.webTemplateDir + '/app/entities/tpl/_entity-header-template.ejs',
+              this.webappDir + 'app/entities/tpl/list-header-tpl.html',
+              this, {}, true);
+          }
+
           // Load in-memory data for fields
-          this.fields && this.fields.forEach( function (field) {
+          this.fields && this.fields.forEach(function (field) {
             // Migration from JodaTime to Java Time
             if (field.fieldType === 'DateTime' || field.fieldType === 'Date') {
               field.fieldType = 'ZonedDateTime';
@@ -395,9 +416,15 @@ module.exports = yeoman.Base.extend({
 
           this.service = this.fileData.service;
           //Update the entity list view
-          jhipsterFunc.copyHtml(this.webTemplateDir + '/app/entities/_entity-management.ejs',
-            this.webappDir + 'app/entities/' + this.entityFolderName + '/' + this.entityPluralFileName + '.html',
-            this, {}, true);
+          if (this.useTemplate) {
+            jhipsterFunc.copyHtml(this.webTemplateDir + '/app/entities/_entity-management-template.ejs',
+              this.webappDir + 'app/entities/' + this.entityFolderName + '/' + this.entityPluralFileName + '.html',
+              this, {}, true);
+          }else{
+            jhipsterFunc.copyHtml(this.webTemplateDir + '/app/entities/_entity-management.ejs',
+              this.webappDir + 'app/entities/' + this.entityFolderName + '/' + this.entityPluralFileName + '.html',
+              this, {}, true);
+          }
           //Update the entity controller file
           this.template(this.webTemplateDir + '/app/entities/_entity-management.controller.ejs',
             this.webappDir + 'app/entities/' + this.entityFolderName + '/' + this.entityFileName + '.controller' + '.js',

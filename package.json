@@ -1,6 +1,6 @@
 {
   "name": "generator-jhipster-angular-datatables",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "description": "JHipster module to change default grid with Angular DataTables",
   "homepage": "https://github.com/hermeslm/generator-jhipster-angular-datatables",
   "author": {

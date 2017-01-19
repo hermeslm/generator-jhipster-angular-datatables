@@ -23,7 +23,10 @@
                 defer.resolve($filter('filter')(vm.<%= entityInstancePlural %>, vm.searchQuery, undefined));
             }
             return defer.promise;
-        }).withPaginationType('full_numbers').withBootstrap().withDOM('tip');
+        }).withPaginationType('full_numbers').withBootstrap().withDOM('tip')/*.withOption('scrollX', '100%')*/
+        .withOption('fnRowCallback', function (nRow, aData, iDisplayIndex, iDisplayIndexFull) {
+        $compile(nRow)($scope);
+        });
 
         vm.dtColumns = [
             <%_
