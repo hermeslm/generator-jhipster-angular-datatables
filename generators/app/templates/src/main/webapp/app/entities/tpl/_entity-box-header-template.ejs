@@ -2,14 +2,14 @@
 <div class="box-header">
   <div class="navbar-form navbar-left" style="margin-left: -15px;">
     <button class="btn btn-primary" ui-sref="<%= entityStateName %>.new">
-      <span class="glyphicon glyphicon-plus"></span><span>New <%= entityClassHumanized %></span>
+      <span class="glyphicon glyphicon-plus"></span><span>New {{vm.entityClassHumanized}}</span>
     </button>
   </div>
   <div class="navbar-form navbar-right">
     <div class="text-right">
       <div class="has-feedback input-group-sm">
         <input type="text" class="form-control" ng-model="vm.searchQuery" size="80"
-               id="searchQuery<%= entityStateName %>" placeholder="<% if (enableTranslation) { %>{{ '<%= keyPrefix %>home.search' | translate }}<% } else { %>Query<% } %>" ng-change="vm.search()">
+               id="searchQuery<%= entityStateName %>" placeholder="<% if (enableTranslation) { %>{{ vm.searchPlaceHolder | translate }}<% } else { %>Query<% } %>" ng-change="vm.search()">
         <span class="glyphicon glyphicon-search form-control-feedback"></span>
       </div>
     </div>

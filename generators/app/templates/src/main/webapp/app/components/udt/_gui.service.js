@@ -25,7 +25,7 @@
             for (var i = 0, len = buttons.length; i < len; i++) {
                 switch(buttons[i]) {
                   case 'view': {
-                    stButtons += '<a class="btn-sm btn-primary" ui-sref="' + entity + '-detail({id:data.id})" href="#/' + entity + '/' + data.id + '">' +
+                    stButtons += '<a class="btn-sm btn-primary" ui-sref="' + entity + '-detail({id:' + data.id + '})" href="#/' + entity + '/' + data.id + '">' +
                       '   <i class="glyphicon glyphicon-eye-open"></i></a>&nbsp;';
                     // stButtons += '<a class="btn-sm btn-primary " ui-sref="' + entity + '-detail({id:' + data.id + '})">' +
                     //     '   <i class="glyphicon glyphicon-eye-open"></i></a>';

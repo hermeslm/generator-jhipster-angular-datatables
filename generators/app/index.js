@@ -435,7 +435,7 @@ module.exports = yeoman.Base.extend({
 
     registering: function () {
       try {
-        jhipsterFunc.registerModule("generator-jhipster-angular-datatables", "entity", "post", "entity", "Change entity grid with angular-tables");
+        jhipsterFunc.registerModule("generator-jhipster-angular-datatables", "entity", "post"/*, "entity", "Change entity grid with angular-tables"*/);
       } catch (err) {
         this.log(chalk.red.bold('WARN!') + ' Could not register as a jhipster post entity creation hook...\n');
       }
@@ -456,7 +456,7 @@ module.exports = yeoman.Base.extend({
   ,
 
   end: function () {
-    this.log('\n' + chalk.bold.green('Auditing enabled for entities, you will have an option to enable audit while creating new entities as well'));
+    this.log('\n' + chalk.bold.green('Angular Datatables are enabled for entities, you will have an option to enable audit while creating new entities as well'));
     this.log('\n' + chalk.bold.green('I\'m running gulp install now'));
   }
 
