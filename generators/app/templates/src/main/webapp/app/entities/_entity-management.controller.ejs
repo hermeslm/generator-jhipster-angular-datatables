@@ -12,6 +12,7 @@
         <%_ if (useTemplate) { _%>
         vm.title = '<%= entityClassPluralHumanized %>';
         vm.entityClassHumanized = '<%= entityClassHumanized %>';
+        vm.entityClass = '<%= entityInstance %>';
         <% if (enableTranslation) { %>
         vm.searchPlaceHolder = '<%=angularAppName%>.<%= entityInstance %>.home.search';
         <% } %>
