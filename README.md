@@ -66,6 +66,6 @@ Apache-2.0 © [Hermes Lorenzo](https://www.linkedin.com/in/hermeslm)
 [project-build]: 1.3.0
 [daviddm-image]: https://david-dm.org/hipster-labs/generator-jhipster-entity-audit.svg?theme=shields.io
 [daviddm-url]: https://david-dm.org/hipster-labs/generator-jhipster-entity-audit
-[old-image]: https://github.com/hermeslm/generator-jhipster-angular-datatables/blob/master/doc/old.png
-[new-image]: https://github.com/hermeslm/generator-jhipster-angular-datatables/blob/master/doc/new.png
+[old-image]: https://github.com/hermeslm/generator-jhipster-angular-datatables/blob/master/doc/old.png?raw=true
+[new-image]: https://github.com/hermeslm/generator-jhipster-angular-datatables/blob/master/doc/new.png?raw=true
 [adminLTE]: https://almsaeedstudio.com/themes/AdminLTE/index.html
