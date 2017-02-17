@@ -38,6 +38,7 @@ module.exports = yeoman.Base.extend({
 
       if (args == 'default') {
         this.updateType = 'all';
+        this.useTemplate = true;
       }
     },
 
@@ -48,9 +49,10 @@ module.exports = yeoman.Base.extend({
 
     checkJHVersion: function () {
       var supportedJHVersion = packagejs.dependencies['generator-jhipster'];
-      if (jhipsterVar.jhipsterVersion && !semver.satisfies(jhipsterVar.jhipsterVersion, supportedJHVersion)) {
-        this.env.error(chalk.red.bold('ERROR!') + ' I support only JHipster versions greater than ${supportedJHVersion}... If you want to use Entity Audit with an older JHipster version, download a previous version that supports the required JHipster version.');
-      }
+      // if (jhipsterVar.jhipsterVersion && !semver.satisfies(jhipsterVar.jhipsterVersion, supportedJHVersion)) {
+      //   this.env.error(chalk.red.bold('ERROR!') + ' I support only JHipster versions greater than ' + supportedJHVersion +
+      //     '... If you want to use JHipster-Angular-DataTables with an older JHipster version, download a previous version that supports the required JHipster version.');
+      // }
     },
 
     getEntitityNames: function () {
