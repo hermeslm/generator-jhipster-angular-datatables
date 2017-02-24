@@ -11,8 +11,7 @@ You can choose to change default grid(table) for all or selected entities with [
 
 As this is a [JHipster](http://jhipster.github.io/) module, we expect you have [JHipster and its related tools already installed](http://jhipster.github.io/installation.html).
 
-This module requires Jhipster version greater than 3.0 in order to work, and I fixed errors with teh new Jhipster v4.*.
-Very important this generator only work with Angular 1.* is not compatible with Angular 2.* of Jhister v4.*. Updates will be comming soon.
+This module requires Jhipster version greater than 3.0 in order to work, and I fixed errors for compatibility and tested with the new Jhipster v4.*.
 
 ```bash
 npm install -g generator-jhipster-angular-datatables
