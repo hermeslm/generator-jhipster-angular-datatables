@@ -52,7 +52,8 @@ New view ![New view][new-image]
 
 ## Todo
 
-1 - Resolve problems in entities with paging. 
+1 - Resolve problems in entities with paging.
+2 - Done. Actions buttons service used as dependency. 
 
 
 ## License

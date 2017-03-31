@@ -164,6 +164,7 @@ module.exports = yeoman.Base.extend({
 
       //Add bower dependencies
       jhipsterFunc.addBowerDependency('angular-datatables', '0.5.5');
+      jhipsterFunc.addBowerDependency('ods-lib', 'https://github.com/hermeslm/ods-lib.git#1.1.6');
 
       //Add Angular-Datatables module dependencies
       jhipsterFunc.addAngularJsModule('datatables');
@@ -171,20 +172,20 @@ module.exports = yeoman.Base.extend({
       jhipsterFunc.addAngularJsModule('datatables.bootstrap');
       jhipsterFunc.addAngularJsModule('datatables.colreorder');
       jhipsterFunc.addAngularJsModule('datatables.columnfilter');
-      jhipsterFunc.addAngularJsModule('udt');
+      jhipsterFunc.addAngularJsModule('ods-lib');
 
       //Copy components services
-      var filesToCopy = [
-        // {
+      // var filesToCopy = [
+      //   {
         //   from: this.webappDir + 'app/admin/entity-audit/_entity-audits.html',
         //   to: this.webappDir + 'app/admin/entity-audit/entity-audits.html'},
-        {
-          from: this.webTemplateDir + '/app/components/udt/_gui.service.js',
-          to: this.webappDir + 'app/components/udt/gui.service.js'
-        }
-      ];
+        // {
+        //   from: this.webTemplateDir + '/app/components/udt/_gui.service.js',
+        //   to: this.webappDir + 'app/components/udt/gui.service.js'
+        // }
+      // ];
       // this.copy(this.webTemplateDir + '/app/components/UDT/GUI.service.js', this.webappDir + 'app/components/UDT/GUI.service.js');
-      this.copyFiles(filesToCopy);
+      // this.copyFiles(filesToCopy);
     },
 
     updateEntityFiles: function () {
