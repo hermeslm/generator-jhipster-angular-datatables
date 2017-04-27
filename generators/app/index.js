@@ -164,7 +164,7 @@ module.exports = yeoman.Base.extend({
 
       //Add bower dependencies
       jhipsterFunc.addBowerDependency('angular-datatables', '0.5.5');
-      jhipsterFunc.addBowerDependency('ods-lib', 'https://github.com/hermeslm/ods-lib.git#1.1.6');
+      jhipsterFunc.addBowerDependency('ods-lib', 'https://github.com/hermeslm/ods-lib.git#1.1.8');
 
       //Add Angular-Datatables module dependencies
       jhipsterFunc.addAngularJsModule('datatables');
